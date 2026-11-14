@@ -1,59 +1,54 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#0b0e14">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
+<meta charset="utf-8">
 <title>Subway Dash 3D</title>
-<link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="description" content="Subway Dash 3D — бесконечный 3D-раннер для телефона: три полосы, изогнутый мир, день/ночь, погода, до 120 fps.">
+<meta name="theme-color" content="#0b0e14">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<script type="importmap">
-{ "imports": { "three": "./three.module.js" } }
-</script>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <canvas id="game"></canvas>
+<div id="vign"></div>
+<div id="flash"></div>
 
-<div id="hud" class="hidden">
-  <div class="hud-top">
-    <div class="hud-score"><span id="score">0</span></div>
-    <div class="hud-coins"><span id="coins">0</span><i class="coin-ico"></i></div>
+<div id="hud">
+  <div id="hudL">
+    <div class="pill"><span id="score">0</span></div>
+    <div class="pill"><i class="coin"></i><span id="coins">0</span></div>
+    <div class="pill" id="multPill"><span id="mult"></span></div>
   </div>
-  <div class="hud-mult" id="multiplier"></div>
-  <div class="hud-power" id="powerbar"></div>
+  <div id="hudR">
+    <div class="pill small" id="fps" hidden></div>
+    <button class="pill small" id="mute">🔊</button>
+  </div>
+  <div id="powerbar"><span id="power"></span></div>
 </div>
 
-<div id="menu" class="overlay">
-  <div class="logo">
-    <div class="logo-main">SUBWAY<span>DASH</span></div>
-    <div class="logo-sub">3D ENDLESS RUNNER</div>
-  </div>
-  <div class="chars" id="chars"></div>
-  <button id="play" class="btn-play">ИГРАТЬ</button>
-  <div class="menu-foot">
-    <span>свайп ← → ↑ ↓</span>
-    <button id="mute" class="btn-ico" title="звук">♪</button>
-  </div>
-  <div class="best" id="best"></div>
+<div id="menu">
+  <div class="logo">SUBWAY DASH</div>
+  <div class="sub">3D ENDLESS RUNNER</div>
+  <div class="hint">Свайп ← → — полосы · ↑ — прыжок · ↓ — перекат</div>
+  <button id="play">ИГРАТЬ</button>
+  <div class="foot">← → / W A S D на компьютере · <button id="mute2" class="lnk">звук</button></div>
 </div>
 
-<div id="over" class="overlay hidden">
-  <div class="over-card">
-    <div class="over-title">GAME OVER</div>
-    <div class="over-stats">
-      <div><b id="final-score">0</b><span>счёт</span></div>
-      <div><b id="final-coins">0</b><span>монеты</span></div>
-      <div><b id="final-best">0</b><span>рекорд</span></div>
-    </div>
-    <button id="restart" class="btn-play">ЗАНОВО</button>
+<div id="over" hidden>
+  <div class="logo small">ЗАБЕГ ОКОНЧЕН</div>
+  <div class="stats">
+    <div>Очки <b id="finalScore">0</b></div>
+    <div>Монеты <b id="finalCoins">0</b></div>
+    <div>Рекорд <b id="bestScore">0</b></div>
   </div>
+  <button id="again">ЕЩЁ РАЗ</button>
 </div>
 
-<div id="rotate" class="hidden">↻ поверни телефон горизонтально</div>
-<div id="fps"></div>
-
-<script type="module" src="game.js"></script>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>
